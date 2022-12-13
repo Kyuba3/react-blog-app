@@ -11,7 +11,7 @@ const Render = () => {
         <Container>
           <Row className="d-flex justify-content-between col-12">
             {posts.map(post => (
-                <Card className="mb-4 col-4 px-3 py-3">
+                <Card className="mb-4 col-md-4 px-3 py-3">
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text><b>Author: </b>{post.author}</Card.Text>
                     <Card.Text><b>Published: </b>{post.publishedDate}</Card.Text>
