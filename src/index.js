@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
