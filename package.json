@@ -15,6 +15,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "2.0",
     "react-dom": "^18.2.0",
+    "react-quill": "^2.0.0",
     "react-redux": "7.2.6",
     "react-router-dom": "6.0.1",
     "react-scripts": "5.0.1",
@@ -22,6 +23,7 @@
     "redux-devtools-extension": "2.13.9",
     "sass": "1.43.4",
     "short-id": "^0.1.0-1",
+    "shortid": "^2.2.16",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
