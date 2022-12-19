@@ -56,6 +56,7 @@ const Post = () => {
         <Col className="col-md-8">
           <p><b>Author: </b>{postData.author}</p>
           <p><b>Published: </b>{dateToStr(postData.publishedDate)}</p>
+          <p><b>Category: </b>{postData.category}</p>
           <p>{postData.content}</p> 
         </Col>  
       </Row>

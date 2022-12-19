@@ -8,6 +8,8 @@ import { Container } from 'react-bootstrap';
 import Header from './components/views/Header/Header';
 import Footer from './components/views/Footer/Footer';
 import PostAdd from './components/pages/PostAdd/PostAdd';
+import Categories from './components/pages/Categories/Categories';
+import PostCategory from './components/features/PostCategory'
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
           <Route path="/post/add" element={<PostAdd />}/>
           <Route path="/post/edit/:id" element={<Edit />}/>
           <Route path="/about" element={<About />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/categories/:postCategory" element={<PostCategory />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />

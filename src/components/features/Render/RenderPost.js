@@ -6,16 +6,18 @@ import { dateToStr } from "../../../utils/dateToStr";
 
 const RenderPost = () => {
 
-    const posts = useSelector(getAllPosts); 
+    const posts = useSelector(getAllPosts);
+    console.log(posts)
     
     return (
         <Container>
           <Row className="d-flex justify-content-between col-12">
             {posts.map(post => (
-                <Card key={posts.id} className="mb-4 px-3 py-3 col-4">
+                <Card key={post.id} className="mb-4 px-3 py-3 col-4">
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text><b>Author: </b>{post.author}</Card.Text>
                     <Card.Text><b>Published: </b>{dateToStr(post.publishedDate)}</Card.Text>
+                    <Card.Text><b>Category: </b>{post.category}</Card.Text>
                     <Card.Text><b>Description: </b>{post.shortDescription}</Card.Text>
                     <b>Main content: </b><p dangerouslySetInnerHTML={{__html: post.content}} />
                     <Nav>

@@ -33,6 +33,7 @@ const EditPostForm = () => {
             content={postById.content}
             shortDescription={postById.shortDescription}
             publishedDate={postById.publishedDate}
+            category={postById.category}
             id={id}
           />
         </>

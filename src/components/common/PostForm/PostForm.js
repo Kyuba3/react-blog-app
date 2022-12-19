@@ -16,12 +16,13 @@ const PostForm = ({action, actionText, ...props}) => {
     const { register, handleSubmit: validate, formState: { errors }} = useForm();
     const [contentError, setContentError] = useState(false);
     const [dateError, setDateError] = useState(false);
+    const [category, setCategory] = useState(props.category || "");
 
     const handleSubmit = e => {
         setContentError(!content)
         setDateError(!publishedDate)
         if(content || publishedDate) {
-          action({title, author, publishedDate, shortDescription, content});
+          action({title, author, publishedDate, shortDescription, content, category});
         }
     };
 
@@ -65,6 +66,20 @@ const PostForm = ({action, actionText, ...props}) => {
                 />
                 {dateError && <small className="d-block form-text text-danger mt-2">Choose date.</small>}
             </Form.Group>
+
+            <Form.Group className="mb-3 col-3" controlId="category">
+                <Form.Label className="d-flex justify-content-start">
+                    Category
+                </Form.Label>
+                <Form.Select
+                    {...register("category", {required: true})}
+                    as="select"
+                    placeholder="Please select category"
+                    value={category}
+                    onChange={e => setCategory(e.target.value)}
+                />
+                {errors.category && <small className="d-block form-text text-danger mt-2">This field is required </small>}
+            </Form.Group>
             
             <Form.Group className="mb-3 col-6" controlId="description">
                 <Form.Label className="d-flex justify-content-start">
@@ -98,7 +113,6 @@ const PostForm = ({action, actionText, ...props}) => {
             </Button>
         </Form>
     );
-
 };
 
 export default PostForm
