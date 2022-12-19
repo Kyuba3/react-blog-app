@@ -1,5 +1,9 @@
 import { useState } from "react";
 import {Form, Button} from 'react-bootstrap';
+import ReactQuill from 'react-quill';
+import DatePicker from 'react-datepicker'
+import 'react-quill/dist/quill.snow.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const PostForm = ({action, actionText, ...props}) => {
 
@@ -9,27 +13,27 @@ const PostForm = ({action, actionText, ...props}) => {
     const [shortDescription, setShortDescription] = useState(props.shortDescription || "");
     const [content, setContent] = useState(props.content || "");
 
-
     const handleSubmit = e => {
         e.preventDefault();
         action({title, author, publishedDate, shortDescription, content})
-    }
+    };
 
     return (
         <Form className="col-12 mx-5" onSubmit={handleSubmit}>
-            <Form.Group className="mb-3 col-3">
+            <Form.Group className="mb-3 col-3" controlId="title">
                 <Form.Label className="d-flex justify-content-start">
                     Title 
                 </Form.Label>
                 <Form.Control 
-                    type="textarea" 
+                    type="text" 
                     placeholder="Enter a title" 
                     value={title} 
                     required
                     onChange={e => setTitle(e.target.value)}
                 />
             </Form.Group>
-            <Form.Group className="mb-3 col-3">
+            
+            <Form.Group className="mb-3 col-3" controlId="author">
                 <Form.Label className="d-flex justify-content-start">
                     Author 
                 </Form.Label>
@@ -41,18 +45,18 @@ const PostForm = ({action, actionText, ...props}) => {
                     onChange={e => setAuthor(e.target.value)} 
                 />
             </Form.Group>
-            <Form.Group className="mb-3 col-3">
+
+            <Form.Group className="mb-3 col-3" controlId="published">
                 <Form.Label className="d-flex justify-content-start">
                     Published 
                 </Form.Label>
-                <Form.Control 
-                    type="date" 
-                    placeholder="Enter a date of publish"
-                    value={publishedDate}
-                    onChange={e => setPublishedDate(e.target.value)} 
+                <DatePicker
+                  selected={publishedDate ? new Date(publishedDate) : new Date()}
+                  onChange={(date) => setPublishedDate(date)}
                 />
             </Form.Group>
-            <Form.Group className="mb-3 col-6">
+            
+            <Form.Group className="mb-3 col-6" controlId="description">
                 <Form.Label className="d-flex justify-content-start">
                     Short description 
                 </Form.Label>
@@ -65,19 +69,17 @@ const PostForm = ({action, actionText, ...props}) => {
                     onChange={e => setShortDescription(e.target.value)} 
                 />
             </Form.Group>
-            <Form.Group className="mb-3 col-6 pb-2">
+            
+            <Form.Group className="mb-3 col-6 pb-2" controlId="content">
                 <Form.Label className="d-flex justify-content-start">
                     Main content 
                 </Form.Label>
-                <Form.Control 
-                    type="text"
-                    as="textarea"
-                    rows={8}
-                    placeholder="" 
+                  <ReactQuill
+                    theme="snow" 
                     value={content}
-                    onChange={e => setContent(e.target.value)} 
-                    required
-                />
+                    onChange={setContent} 
+                    placeholder="Add your main content text"
+                  />
             </Form.Group>
             <Button type="submit">
                 { actionText }

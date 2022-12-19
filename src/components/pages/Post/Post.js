@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 import { deletePost } from "../../../redux/postsRedux";
 import { useState } from "react";
 import DeletePost from "../../features/Render/DeletePost";
+import { dateToStr } from "../../../utils/dateToStr";
 
 const Post = () => {
 
@@ -16,7 +17,6 @@ const Post = () => {
 
   const openModal = () => setModal(true);
   const closeModal = () => setModal(false);
-
   const deleteCard = (e) => {
     e.preventDefault();
     dispatch(deletePost(postData.id));
@@ -42,17 +42,21 @@ const Post = () => {
           <h2>{postData.title}</h2>
           <div>
             <NavLink key={postData.id} to={"/post/edit/" + postData.id}>
-              <Button variant="outline-info" className="m-2">Edit</Button>
+              <Button variant="outline-info" className="m-2">
+                Edit
+              </Button>
             </NavLink>
-            <Button variant="outline-danger" onClick={openModal}>Delete</Button>
+            <Button variant="outline-danger" onClick={openModal}>
+              Delete
+            </Button>
           </div>
         </Col>
       </Row>
-      <Row className="justify-content-around">
+      <Row className="justify-content-center">
         <Col className="col-md-8">
           <p><b>Author: </b>{postData.author}</p>
-          <p><b>Published: </b>{postData.publishedDate}</p>
-          <p>{postData.content}</p>
+          <p><b>Published: </b>{dateToStr(postData.publishedDate)}</p>
+          <p>{postData.content}</p> 
         </Col>  
       </Row>
     </Container>
